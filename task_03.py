@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """Mortgage Loan Calculator"""
+import decimal
 
 NAME = raw_input('What is your Name?: ')
 PRINCIPAL = int(raw_input('What is the Ammount of your Principal?: '))
@@ -50,7 +51,7 @@ elif PRINCIPAL >= 1000000:
             RATE = float('0.0262')
 
 if RATE != None:
-    AMMOUNT = PRINCIPAL * ((1 + RATE / 12) ** (12 * YEARS))
+    AMMOUNT = PRINCIPAL * ((1 + decimal.Decimal(RATE) / 12) ** (12 * YEARS))
     TOTAL = int(round(AMMOUNT))
     INTEREST = (TOTAL - PRINCIPAL)
     if PREQUALIFIED == PREAPROVED:
