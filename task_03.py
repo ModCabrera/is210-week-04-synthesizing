@@ -10,50 +10,50 @@ PREQUALIFIED = raw_input('Are you Pre-qualified?: ').lower()
 PREAPROVED = ('yes')
 RATE = None
 TOTAL = None
-INTEREST = None
+
 
 if 0 <= PRINCIPAL <= 199999:
     if 1 <= YEARS <= 15:
-        if PREQUALIFIED == PREAPROVED[0]:
+        if PREQUALIFIED == PREAPROVED[0][:1]:
             RATE = float('0.0363')
         else:
             RATE = float('0.0465')
     elif 16 <= YEARS <= 20:
-        if PREQUALIFIED == PREAPROVED[0]:
+        if PREQUALIFIED == PREAPROVED[0][:1]:
             RATE = float('0.0404')
         else:
             RATE = float('0.0498')
     elif 21 <= YEARS <= 30:
-        if PREQUALIFIED == PREAPROVED[0]:
+        if PREQUALIFIED == PREAPROVED[0][:1]:
             RATE = float('0.0577')
         else:
             RATE = float('0.0639')
 elif 200000 <= PRINCIPAL <= 999999:
     if 1 <= YEARS <= 15:
-        if PREQUALIFIED == PREAPROVED[0]:
+        if PREQUALIFIED == PREAPROVED[0][:1]:
             RATE = float('0.0302')
         else:
             RATE = float('0.0398')
     elif 16 <= YEARS <= 20:
-        if PREQUALIFIED == PREAPROVED[0]:
+        if PREQUALIFIED == PREAPROVED[0][:1]:
             RATE = float('0.0327')
         else:
             RATE = float('0.0408')
     elif 21 <= YEARS <= 30:
-        if PREQUALIFIED == PREAPROVED[0]:
+        if PREQUALIFIED == PREAPROVED[0][:1]:
             RATE = float('0.0466')
 elif PRINCIPAL >= 1000000:
     if  1 <= YEARS <= 15:
-        if PREQUALIFIED == PREAPROVED[0]:
+        if PREQUALIFIED == PREAPROVED[0][:1]:
             RATE = float('0.0205')
     elif 16 <= YEARS <= 20:
-        if PREQUALIFIED == PREAPROVED[0]:
+        if PREQUALIFIED == PREAPROVED[0][:1]:
             RATE = float('0.0262')
+
 
 if RATE != None:
     AMMOUNT = PRINCIPAL * ((1 + decimal.Decimal(RATE) / 12) ** (12 * YEARS))
     TOTAL = int(round(AMMOUNT))
-    INTEREST = (TOTAL - PRINCIPAL)
     if PREQUALIFIED == PREAPROVED:
         PREQUALIFIED = 'Yes'
     else:
@@ -63,7 +63,6 @@ REPORT = """    Loan Report for: {}
                 Principal: ${}
                 Duration: {} Years
                 Prequalified:{}
-                Interests: ${}
                 Total: ${}
-         """.format(NAME, PRINCIPAL, YEARS, PREQUALIFIED, INTEREST, TOTAL)
+         """.format(NAME, PRINCIPAL, YEARS, PREQUALIFIED, TOTAL)
 print REPORT
